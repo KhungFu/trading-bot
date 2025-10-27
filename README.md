@@ -1,4 +1,4 @@
-#"🎯 Ubuntu 25.04 Trading Bot - Ein-Klick Installation"
+# "🎯 Ubuntu 25.04 Trading Bot - Ein-Klick Installation"
 
 # Bot herunterladen und installieren
 cd /tmp
