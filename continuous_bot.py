@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 import requests
 import json
 import time
@@ -16,14 +17,14 @@ class SimpleTradingBot:
         self.session = requests.Session()
         self.running = True
         
-        # Trading Paare
+        # Trading pairs
         self.crypto_epics = {
             "BTC": "BTCUSD", "ETH": "ETHUSD", "SOL": "SOLUSD",
             "XRP": "XRPUSD", "DOGE": "DOGEUSD", "BNB": "BNBUSD"
         }
         
     def load_config(self):
-        """Lädt Konfiguration aus Environment Variables"""
+        """Load configuration from environment variables"""
         self.api_key = os.getenv('CAPITAL_API_KEY', '')
         self.api_secret = os.getenv('CAPITAL_API_SECRET', '')
         self.account_id = os.getenv('CAPITAL_ACCOUNT_ID', '')
@@ -31,10 +32,10 @@ class SimpleTradingBot:
         self.check_interval = int(os.getenv('CHECK_INTERVAL', '60'))
         
         if not self.api_key:
-            raise ValueError("CAPITAL_API_KEY nicht gesetzt!")
+            raise ValueError("CAPITAL_API_KEY not set!")
     
     def setup_logging(self):
-        """Einrichtung des Loggings"""
+        """Setup logging"""
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
@@ -46,7 +47,7 @@ class SimpleTradingBot:
         self.logger = logging.getLogger('TradingBot')
     
     def generate_signature(self, method, path, body=""):
-        """Generiert API Signature"""
+        """Generate API signature"""
         timestamp = str(int(time.time() * 1000))
         message = timestamp + method + path + body
         signature = hmac.new(
@@ -57,7 +58,7 @@ class SimpleTradingBot:
         return timestamp, signature
     
     def api_request(self, method, endpoint, data=None):
-        """Führt API Request aus"""
+        """Make API request"""
         try:
             base_url = "https://api-capital.backend-capital.com" if self.demo_mode else "https://api-capital.backend-capital.com"
             path = f"/api/v1{endpoint}"
@@ -84,34 +85,34 @@ class SimpleTradingBot:
             return response.json()
             
         except Exception as e:
-            self.logger.error(f"API Fehler: {str(e)}")
+            self.logger.error(f"API Error: {str(e)}")
             return None
     
     def get_account_info(self):
-        """Holt Kontoinformationen"""
+        """Get account information"""
         return self.api_request("GET", f"/accounts/{self.account_id}")
     
     def get_positions(self):
-        """Holt offene Positionen"""
+        """Get open positions"""
         return self.api_request("GET", "/positions")
     
     def monitor_market(self):
-        """Haupt-Monitoring Loop"""
-        self.logger.info(f"?? Trading Bot gestartet (Interval: {self.check_interval}s)")
+        """Main monitoring loop"""
+        self.logger.info(f"Trading Bot started (Interval: {self.check_interval}s)")
         
         while self.running:
             try:
-                # Kontostatus prüfen
+                # Check account status
                 account_info = self.get_account_info()
                 if account_info:
-                    balance = account_info.get('balance', 'Unbekannt')
-                    self.logger.info(f"?? Kontostand: ${balance}")
+                    balance = account_info.get('balance', 'Unknown')
+                    self.logger.info(f"Account Balance: ${balance}")
                 
-                # Positionen prüfen
+                # Check positions
                 positions = self.get_positions()
                 if positions:
                     open_positions = positions.get('positions', [])
-                    self.logger.info(f"?? Offene Positionen: {len(open_positions)}")
+                    self.logger.info(f"Open Positions: {len(open_positions)}")
                     
                     for position in open_positions:
                         epic = position.get('epic', '')
@@ -119,43 +120,43 @@ class SimpleTradingBot:
                         profit = position.get('position', {}).get('profit', 0)
                         self.logger.info(f"   {coin}: ${profit:.2f}")
                 
-                # Auf nächste Prüfung warten
+                # Wait for next check
                 time.sleep(self.check_interval)
                 
             except Exception as e:
-                self.logger.error(f"Monitoring Fehler: {str(e)}")
-                time.sleep(30)  # Bei Fehler 30 Sekunden warten
+                self.logger.error(f"Monitoring Error: {str(e)}")
+                time.sleep(30)  # Wait 30 seconds on error
     
     def start(self):
-        """Startet den Bot"""
+        """Start the bot"""
         try:
-            # Login testen
-            self.logger.info("?? Verbinde mit Capital.com...")
+            # Test login
+            self.logger.info("Connecting to Capital.com...")
             account_info = self.get_account_info()
             if account_info:
-                self.logger.info("? Erfolgreich verbunden!")
+                self.logger.info("Successfully connected!")
                 
-                # Monitoring im separaten Thread starten
+                # Start monitoring in separate thread
                 monitor_thread = threading.Thread(target=self.monitor_market)
                 monitor_thread.daemon = True
                 monitor_thread.start()
                 
-                # Hauptthread am Leben erhalten
+                # Keep main thread alive
                 while self.running:
                     time.sleep(1)
                     
             else:
-                self.logger.error("? Verbindung fehlgeschlagen!")
+                self.logger.error("Connection failed!")
                 
         except KeyboardInterrupt:
             self.stop()
         except Exception as e:
-            self.logger.error(f"? Start fehlgeschlagen: {str(e)}")
+            self.logger.error(f"Start failed: {str(e)}")
     
     def stop(self):
-        """Stoppt den Bot"""
+        """Stop the bot"""
         self.running = False
-        self.logger.info("?? Bot gestoppt")
+        self.logger.info("Bot stopped")
 
 if __name__ == "__main__":
     bot = SimpleTradingBot()
