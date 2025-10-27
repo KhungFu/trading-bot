@@ -5,5 +5,5 @@
 ```shell
 cd /tmp
 sudo git clone https://github.com/KhungFu/trading-bot.git
-cd trading-bot-ubuntu25
+cd trading-bot
 ```
