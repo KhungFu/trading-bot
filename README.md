@@ -3,5 +3,12 @@
 # Bot herunterladen und installieren
 
 ```shell
-sudo git clone https://github.com/KhungFu/trading-bot.git
+# Bot herunterladen und installieren
+cd /tmp
+git clone https://github.com/KhungFu/trading-bot.git
+cd trading-bot
+
+# Installation ausführen
+chmod +x install_trading_bot_simple.sh
+./install_trading_bot_simple.sh
 ```
