@@ -4,7 +4,7 @@ echo "🎯 Ubuntu 25.04 Trading Bot - Ein-Klick Installation"
 # Bot herunterladen und installieren
 cd /tmp
 git clone https://github.com/KhungFu/trading-bot.git
-cd trading-bot-ubuntu25
+cd trading-bot
 
 # Installation ausführen
 chmod +x install_trading_bot_simple.sh
