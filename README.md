@@ -4,6 +4,6 @@
 
 ```shell
 cd /tmp
-sudo git clone https://github.com/KhungFu/trading-bot-ubuntu25.git
+sudo git clone https://github.com/KhungFu/trading-bot.git
 cd trading-bot-ubuntu25
 ```
