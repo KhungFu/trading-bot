@@ -68,9 +68,9 @@ class AITradingBot:
         
     def load_config(self):
         """Lädt Konfiguration"""
-        self.api_key = os.getenv('CAPITAL_API_KEY', '').strip()
-        self.api_secret = os.getenv('CAPITAL_API_SECRET', '').strip()
-        self.account_id = os.getenv('CAPITAL_ACCOUNT_ID', '').strip()
+        self.api_key = os.getenv('API_KEY', '').strip()
+        self.api_secret = os.getenv('API_SECRET', '').strip()
+        self.account_id = os.getenv('ACCOUNT_ID', '').strip()
         self.account_currency = os.getenv('ACCOUNT_CURRENCY', 'EUR')
         self.demo_mode = os.getenv('DEMO_MODE', 'False').lower() == 'true'
         self.auto_trading = os.getenv('AUTO_TRADING', 'True').lower() == 'true'
