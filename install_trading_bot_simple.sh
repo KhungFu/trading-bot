@@ -37,23 +37,31 @@ pip install -r requirements.txt
 # Konfigurationsdatei erstellen
 echo -e "${BLUE}⚙️ Erstelle Konfiguration...${NC}"
 cat > .env << EOF
-# Deine echten Capital.com API Daten HIER EINTRAGEN:
-CAPITAL_API_KEY=dein_echter_api_key
-CAPITAL_API_SECRET=dein_echter_api_secret
-CAPITAL_ACCOUNT_ID=deine_echte_account_id
+# Trading Bot Konfiguration
+CAPITAL_API_KEY=CCw4m0yhw8I12ENX
+CAPITAL_API_SECRET=Aydin1972891!
+CAPITAL_ACCOUNT_ID=uzun
 
-# Auf LIVE umstellen:
+# TRADING MODUS:
 DEMO_MODE=False
+AUTO_TRADING=True
 ACCOUNT_CURRENCY=EUR
 CHECK_INTERVAL=60
 
-# Hebel-Einstellungen
+# HEBEL-EINSTELLUNGEN:
 CRYPTO_LEVERAGE=2
 COMMODITY_LEVERAGE=20
 
-# Risikomanagement
-RISK_PER_TRADE=0.1
-MAX_POSITION_SIZE=0.8
+# RISIKOMANAGEMENT:
+RISK_PER_TRADE=0.05        # 5% des Depots pro Trade
+MAX_POSITION_SIZE=0.8      # Max 80% des Depots
+STOP_LOSS_PERCENT=0.02     # 2% Stop-Loss
+TAKE_PROFIT_PERCENT=0.04   # 4% Take-Profit
+
+# TRADING-STRATEGIE:
+ENABLE_CRYPTO=True
+ENABLE_COMMODITIES=True
+MAX_OPEN_TRADES=3
 EOF
 
 # Systemd Service erstellen
