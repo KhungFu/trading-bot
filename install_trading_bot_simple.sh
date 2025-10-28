@@ -37,10 +37,13 @@ pip install -r requirements.txt
 # Konfigurationsdatei erstellen
 echo -e "${BLUE}⚙️ Erstelle Konfiguration...${NC}"
 cat > .env << EOF
-# Trading Bot Konfiguration
+# Deine Capital.com API Daten
 CAPITAL_API_KEY=dein_api_key_hier
-CAPITAL_API_SECRET=dein_api_secret_hier  
-CAPITAL_ACCOUNT_ID=dein_account_id_hier
+CAPITAL_API_SECRET=dein_api_secret_hier
+CAPITAL_ACCOUNT_ID=deine_account_id_hier
+
+# Währung und Handelseinstellungen
+ACCOUNT_CURRENCY=EUR
 DEMO_MODE=True
 CHECK_INTERVAL=60
 EOF
