@@ -40,7 +40,7 @@ cat > .env << EOF
 # Trading Bot Konfiguration
 CAPITAL_API_KEY=CCw4m0yhw8I12ENX
 CAPITAL_API_SECRET=Aydin1972891!
-CAPITAL_ACCOUNT_ID=uzun
+CAPITAL_ACCOUNT_ID=ismail.aydin@outdoorzamani.com
 
 # TRADING MODUS:
 DEMO_MODE=False
