@@ -38,9 +38,9 @@ pip install -r requirements.txt
 echo -e "${BLUE}⚙️ Erstelle Konfiguration...${NC}"
 cat > .env << EOF
 # Trading Bot Konfiguration
-CAPITAL_API_KEY=CCw4m0yhw8I12ENX
-CAPITAL_API_SECRET=Aydin1972891!
-CAPITAL_ACCOUNT_ID=ismail.aydin@outdoorzamani.com
+API_KEY=CCw4m0yhw8I12ENX
+API_SECRET=Aydin1972891!
+ACCOUNT_ID=uzun
 
 # TRADING MODUS:
 DEMO_MODE=False
