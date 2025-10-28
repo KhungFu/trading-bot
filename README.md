@@ -7,6 +7,6 @@
 cd /tmp
 git clone https://github.com/KhungFu/trading-bot.git
 cd trading-bot
-sudo chmod +x install_trading_bot_simple.sh && \ sudo ./install_trading_bot_simple.sh
+sudo chmod +x install_trading_bot_simple.sh & sudo ./install_trading_bot_simple.sh
 
 ```
