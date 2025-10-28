@@ -37,15 +37,23 @@ pip install -r requirements.txt
 # Konfigurationsdatei erstellen
 echo -e "${BLUE}⚙️ Erstelle Konfiguration...${NC}"
 cat > .env << EOF
-# Deine Capital.com API Daten
-CAPITAL_API_KEY=dein_api_key_hier
-CAPITAL_API_SECRET=dein_api_secret_hier
-CAPITAL_ACCOUNT_ID=deine_account_id_hier
+# Deine echten Capital.com API Daten HIER EINTRAGEN:
+CAPITAL_API_KEY=dein_echter_api_key
+CAPITAL_API_SECRET=dein_echter_api_secret
+CAPITAL_ACCOUNT_ID=deine_echte_account_id
 
-# Währung und Handelseinstellungen
+# Auf LIVE umstellen:
+DEMO_MODE=False
 ACCOUNT_CURRENCY=EUR
-DEMO_MODE=True
 CHECK_INTERVAL=60
+
+# Hebel-Einstellungen
+CRYPTO_LEVERAGE=2
+COMMODITY_LEVERAGE=20
+
+# Risikomanagement
+RISK_PER_TRADE=0.1
+MAX_POSITION_SIZE=0.8
 EOF
 
 # Systemd Service erstellen
